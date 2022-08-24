@@ -2,6 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import BoardView from '../views/BoardView.vue'
+import UserView from '../views/UserView.vue'
+import UserProfileView from '../views/UserProfileView.vue'
+import UserPostsView from '../views/UserPostsView.vue'
 
 Vue.use(VueRouter)
 
@@ -23,6 +26,20 @@ const routes = [
     path: "/board/:id",
     name: "board",
     component: BoardView
+  },
+  {
+    path: '/user/:id',
+    component: UserView,
+    children: [
+      {
+        path: "profile",
+        component: UserProfileView
+      },
+      {
+        path: "posts",
+        component: UserPostsView
+      }
+    ]
   }
 ]
 
