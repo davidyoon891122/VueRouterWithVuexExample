@@ -1,14 +1,9 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link :to="{name: 'home'}">Home</router-link> |
-      <router-link :to="{name: 'about'}">About</router-link> |
-      <router-link :to="{name: 'board', params: {id: 'news'}}">Board</router-link>
-    </nav>
-    <router-view/>
+    <h1>홈</h1>
+    <router-view></router-view>
   </div>
 </template>
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

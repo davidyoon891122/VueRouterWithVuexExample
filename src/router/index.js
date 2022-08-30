@@ -5,12 +5,18 @@ import BoardView from '../views/BoardView.vue'
 import UserView from '../views/UserView.vue'
 import UserProfileView from '../views/UserProfileView.vue'
 import UserPostsView from '../views/UserPostsView.vue'
+import NewHomeView from '../views/NewHomeView.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
+    name: 'home',
+    component: NewHomeView
+  },
+  {
+    path: '/home',
     name: 'home',
     component: HomeView
   },
