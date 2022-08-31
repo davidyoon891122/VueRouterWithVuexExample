@@ -1,11 +1,11 @@
 <template>
     <div>
-        <div class="count">{{countAlias}}</div>
+        <div class="count">{{countPlusLocalState}}</div>
         <button @click="increase">증가</button>
         <div style="margin-top: 30px;">
             <input type="number" v-model="localCount"/>
         </div>
-        <div>완료한 목록의 갯수: {{$store.getters.doneTodos.length}}개</div>
+        <div>완료한 목록의 갯수: {{doneTodos.length}}개</div>
         <div class="todos">
             {{doneTodosCount}}
         </div>
@@ -17,7 +17,7 @@ import { mapState, mapGetters } from 'vuex'
 
 export default {
     computed: {
-        ...mapState({
+        ...mapState('count', {
     // 화살표 함수는 코드를 매우 간결하게 만들어 줍니다!
     count: state => state.count,
 
@@ -30,18 +30,35 @@ export default {
     }
 
     }),
-        ...mapGetters(["doneTodosCount"])
+        ...mapGetters("todos",[
+            "doneTodosCount",
+            "doneTodos"
+        ])
     },
     data() {
         return {
-        localCount: 20
+        localCount: 20,
+        state: null
         }
     },
+    // LifeCycle
+    beforeCreate() {
+
+    },
+    created() {
+        this.state = this.$store.state
+    },
+    beforeMount() {
+
+    },
+    mounted() {
+
+    },
+    
     methods: {
         increase() {
-        // this.$store.commit([COUNT_INCREMENT])
-            const context = this.$store.dispatch("test")
-            context.then(value => console.log(value))
+            this.$store.dispatch("count/test")
+            
         }
     }
 }
